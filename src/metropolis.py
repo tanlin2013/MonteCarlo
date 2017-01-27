@@ -5,5 +5,3 @@ def flip(dE,beta):
         return True
     else:
         return False
-
-def convergence():
