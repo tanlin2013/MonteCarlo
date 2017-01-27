@@ -1,5 +1,9 @@
 import numpy as np
 
-def metropolis(dE,maxstep=1e+6):
-    while time < maxtime:
-        
+def metropolis(dE,beta):
+    if not((dE>0.0)and(np.random.random()>=np.exp(-self.beta*dE))):
+        return True
+    else:
+        return False
+
+def convergence():
