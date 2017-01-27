@@ -2,32 +2,29 @@ import numpy as np
 import lattice
 
 class physical:
-    def __init__(self,dim,L,ham):
+    def __init__(self,dim,L,config):
         self.dim=dim
         self.L=L
-        self.ham=ham
-        self.state=state
-    
-    def total_energy(self):
+        self.config=config
         
-        return E
-      
     def magnetization(self):
-         
-        return m
+        m=0
+        for state in np.nditer(self.config):
+            m+=np.array(state)
+        return np.linalg.norm(m)/float(N**dim)
     
     def HeatCapacity(self):
         
         return Cv
-  
+    
     def susceptibility(self):
         
         return chi
 
 class statistical:
-    def __init__(self):
-        self.state=state
-      
+    def __init__(self,config):
+        self.config=config
+        
     def AutoCorrelation(self):
         
         return gamma,tau
