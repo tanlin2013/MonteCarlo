@@ -43,7 +43,7 @@ class Ising:
         time=0 ; histogram=[]
         while time < maxstep:
             E0=self.energy()
-            for trial in xrange(self.N_flip):
+            for trial in xrange(N_flip):
                 site=np.random.randint(0,self.L,(2,))
                 self.state[site[0]][site[1]]*=-1
             dE=self.energy()-E0    
@@ -62,7 +62,7 @@ class Ising:
                 G+=(histogram[t]-mean)*(histogram[t+k]-mean)
             gamma.append(G/((n-k)*std))
             k+=1
-        if mehtod=="fit":
+        if method=="fit":
             tau,b=np.polyfit(np.arange(n-1),np.log(gamma),1)
         elif method=="integral":
             tau=np.sum(gamma)
