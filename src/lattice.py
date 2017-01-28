@@ -1,18 +1,19 @@
 import numpy as np
 
 class lattice:
-    def __init__(self,dim,L):
+    def __init__(self,dim,L,domain):
         self.dim=dim
         self.L=L
+        self.domain=domain
         
     def initialize_lattice(self,init):
         size=tuple([L]*dim)
         if init=="ColdStart":
-            return np.ones(size,dtype=int)  
+            return domain[0]*np.ones(size,dtype=int)  
         elif init=="HotStart":
-            return np.array((np.random.randint(0,2,size)-0.5)*2,dtype=int) 
+            return np.random.choice(self.domain,size)
         else:
-            raise Exception("")
+            raise Exception("Only ColdStart and HotStart are allowed.")
             
     def boundary_condition(self,site):
         if (site<0):
