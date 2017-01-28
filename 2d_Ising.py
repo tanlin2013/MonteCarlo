@@ -1,12 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import lattice
 
 class Ising:
-    def __init__(self,L,J1,J2,h,state):
+    def __init__(self,L,J1,J2,h,beta,state):
         self.L=L
         self.J1=J1
         self.J2=J2
         self.h=h
+        self.beta=beta
         self.state=state
         
     def BC(self,site):
@@ -20,13 +22,13 @@ class Ising:
         ham=self.state[site[0]][site[1]]*(-self.J1*(self.state[self.BC(site[0]+1),site[1]]+self.state[self.BC(site[0]-1),site[1]])-self.J2*(self.state[site[0],self.BC(site[1]+1)]+self.state[site[0],self.BC(site[1]-1)])-self.h)
         return ham
       
-    def energy(self,capacity=False):
+    def energy(self,return_capacity=False):
         U=0.0 ; U2=0.0
         for site in np.ndindex(self.L,self.L):
             U+=0.5*self.hamiltonian(site)
-            if capacity: U2+=U**2
+            if return_capacity: U2+=U**2
         E=U/float(self.L**2)
-        if capacity:
+        if return_capacity:
             Cv=U2/float(self.L**2)-E**2
             return E,Cv
         else:
@@ -46,12 +48,28 @@ class Ising:
                 site=np.random.randint(0,self.L,(2,))
                 self.state[site[0]][site[1]]*=-1
             dE=self.energy()-E0    
-            if ((dE>0.0)and(np.random.random()>=np.exp(-self.beta*dE))):
+            if ((dE>0.0)and(np.random.random()<=np.exp(-self.beta*dE))):
                 self.state[site[0]][site[1]]*=-1
-            histogram.append(self.state)    
+            histogram.append(self.state)
+            time+=1
         return histogram
     
-    def AutoCorrelation(self):
+    def AutoCorrelation(self,histogram,method="integral"):
+        mean=np.mean(histogram) ; std=np.std(histogram)
+        n=len(histogram) ; k=0 ; gamma=[]
+        while k < n:
+            G=0
+            for t in xrange(n-k):
+                G+=(histogram[t]-mean)*(histogram[t+k]-mean)
+            gamma.append(G/((n-k)*std))
+            k+=1
+        if mehtod=="fit":
+            tau,b=np.polyfit(np.arange(n-1),np.log(gamma),1)
+        elif method=="integral":
+            tau=np.sum(gamma)
+        else:
+            raise Exception("Only fit or integral are allowed")
+        return gamma,tau
     
 if __name__=='__main__':
     L=40
