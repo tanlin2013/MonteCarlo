@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import lattice
 
 class Ising:
     def __init__(self,L,J1,J2,h,beta,state):
@@ -40,7 +39,7 @@ class Ising:
         chi=m2-m**2
         return m,chi   
       
-    def sampling(self,N_flip,maxstep=1e+6):
+    def sampling(self,N_flip,maxstep):
         time=0 ; histogram=[]
         while time < maxstep:
             E0=self.energy()
@@ -76,5 +75,13 @@ if __name__=='__main__':
     J1=1.0
     J2=J1
     h=0.0
+    kb=1.0
+    Ts=np.arange(1.8,2.5,0.1)
     
-    simulation=
+    hist_T=[]
+    state=np.ones((L,L),dtype=int)
+    for T in Ts:
+        beta=1/(T*kb)
+        montecarlo=Ising(L,J1,J2,h,beta,state)
+        histogram=montecarlo.sampling(N_flip=2,maxstep=1e+6)
+        hist_T.append(histogram)
