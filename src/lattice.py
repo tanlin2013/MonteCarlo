@@ -13,7 +13,7 @@ class lattice:
         elif init=="HotStart":
             return np.random.choice(self.domain,size)
         else:
-            raise Exception("Only ColdStart and HotStart are allowed.")
+            raise Exception("Only ColdStart or HotStart are allowed.")
             
     def boundary_condition(self,site):
         if (site<0):
