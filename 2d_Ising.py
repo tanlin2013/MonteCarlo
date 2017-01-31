@@ -37,7 +37,7 @@ if __name__=='__main__':
     for i in xrange(len(hist_T)):
         mhist=[] ; chihist=[]
         for j in xrange(int(Nconf)):
-            MS=measurement.(latt,Is.hamiltonian,hist_T[i][j])
+            MS=measurement.(latt,model.hamiltonian,hist_T[i][j])
             m,chi=MS.magnetization()
             mhist.append(np.abs(m)) ; chihist.append(chi)
         mlist.append(np.sum(mhist)/Nconf)
