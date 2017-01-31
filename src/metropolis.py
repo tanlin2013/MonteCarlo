@@ -4,7 +4,7 @@ import copy
 def sampling(lattice,ham,beta,init_state=None,Nflip=2,maxstep=1e+5,show_stats=True):
     time=0 ; histogram=[]
     if init_state is None:
-        state=lattice.initialize_state("HotStart")
+        state=lattice.initialize_lattice("HotStart")
     while time < maxstep:
         dE=0.0 ; trail=0 ; trailist=[]
         while trail < Nflip:
