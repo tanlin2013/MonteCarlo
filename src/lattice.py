@@ -15,7 +15,7 @@ class lattice:
         else:
             raise Exception("Only ColdStart or HotStart are allowed.")
             
-    def boundary_condition(self,site):
+    def periodic_boundary_condition(self,site):
         if (site<0):
             site=self.L-1
         elif(site>self.L-1):
