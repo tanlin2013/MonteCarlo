@@ -10,7 +10,7 @@ class Ising:
         self.J1=J1
         self.J2=J2
         self.h=h
-        self.BC=lattice.boundary_condition
+        self.BC=lattice.periodic_boundary_condition
         
     def hamiltonian(self,state,site):
         ham=state[site[0]][site[1]]*(-self.J1*(state[self.BC(site[0]+1),site[1]]+state[self.BC(site[0]-1),site[1]])-self.J2*(state[site[0],self.BC(site[1]+1)]+state[site[0],self.BC(site[1]-1)])-self.h)
@@ -29,14 +29,14 @@ Is=Ising(latt,J1,J2,h)
 
 for T in Ts:
     beta=1/(T*kb)
-    histogram=metropolis.sampling(latt,Is.hamiltonian,beta)
+    histogram=metropolis.sampling(latt,Is.hamiltonian,beta,Nconf)
     hist_T.append(histogram)
 
 mlist=[] ; chilist=[] 
 for i in xrange(len(hist_T)):
     mhist=[] ; chihist=[]
-    for j in xrange(1,Nconf+1):
-        MS=measurement.(latt,Is.hamiltonian,hist_T[i][-j])
+    for j in xrange(int(Nconf)):
+        MS=measurement.(latt,Is.hamiltonian,hist_T[i][j])
         m,chi=MS.magnetization()
         mhist.append(np.abs(m)) ; chihist.append(chi)
     mlist.append(np.sum(mhist)/Nconf)
