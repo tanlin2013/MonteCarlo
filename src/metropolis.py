@@ -16,7 +16,7 @@ def sampling(lattice,ham,beta,init_state=None,Nflip=2,maxstep=1e+5,show_stats=Tr
             else:
                 dE+=ham(flipState,site)-ham(state,site)    
                 trailist.append((site,flipState)) ; trail+=1
-        if not ((dE>0.0)and(np.random.random()>=np.exp(-beta*dE))):
+        if not((dE>0.0)and(np.random.random()>=np.exp(-beta*dE))):
             for site,flipState in trailist:
                 state[site]=flipState
         histogram.append(state) ; time+=1
