@@ -21,6 +21,7 @@ class XY:
         return m,chi   
     
 if __name__=='__main__':
+    
     L=40
     J=1.0
     kb=1.0
