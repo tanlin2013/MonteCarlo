@@ -7,9 +7,9 @@ class lattice:
         self.domain=domain
         
     def initialize_lattice(self,init):
-        size=tuple([L]*dim)
+        size=tuple([self.L]*self.dim)
         if init=="ColdStart":
-            return domain[0]*np.ones(size,dtype=int)  
+            return self.domain[0]*np.ones(size,dtype=int)  
         elif init=="HotStart":
             return np.random.choice(self.domain,size)
         else:
