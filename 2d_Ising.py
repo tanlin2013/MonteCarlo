@@ -17,6 +17,7 @@ class Ising:
         return ham
 
 if __name__=='__main__':    
+    
     L=40
     J1=1.0
     J2=J1
