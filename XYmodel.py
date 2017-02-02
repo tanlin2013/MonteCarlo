@@ -15,7 +15,7 @@ class XY:
         return ham
     
     def magnetization(self,state,beta):
-        m=np.absolute((np.sum(np.cos(self.state))+np.sum(np.sin(self.state))*j)/float(self.L**2))
+        m=np.absolute((np.sum(np.cos(state))+np.sum(np.sin(state))*j)/float(self.L**2))
         m2=1
         chi=beta*(m2-m**2)
         return m,chi   
