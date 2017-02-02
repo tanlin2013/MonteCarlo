@@ -49,6 +49,6 @@ A list of fundemental class.
     import metropolis
 
     beta=1/(T*kb)
-    model=Ising(latt,J1,J2,h)
+    model=Ising(mylattice,J1,J2,h)
     histogram=metropolis.sampling(latt,model.hamiltonian,beta,Nconf)
     ```
