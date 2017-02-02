@@ -5,18 +5,18 @@ A simple pythonic implementation of Monte Carlo. This module is used for the stu
 * Metropolis
 * Wolff cluster (developing) 
 
-# Requirement:
+## Requirement:
 Only Numpy is required and Anaconda is highly recommanded.
 * Numpy
 
-# Classes
+## Classes
 A list of fundemental class.
 * lattice
 * metropolis
 * wolff_cluster
 * measurement
 
-# How to use it?
+## How to use it?
 1. Declaim a lattice. 
     There are 3 variables required for the lattice construction: dim, L and domain. The constructor will generate a np.ndarray with size=L**dim, and full of its value from domain.
     
