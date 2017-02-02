@@ -6,7 +6,7 @@ A simple pythonic implementation of Monte Carlo. This module is used for the stu
 * Wolff cluster (developing) 
 
 # Requirement:
-Only Numpy are required and Anaconda is highly suggested.
+Only Numpy is required and Anaconda is highly suggested.
 * Numpy
 
 # Classes
@@ -15,4 +15,4 @@ Only Numpy are required and Anaconda is highly suggested.
 * wolff_cluster
 * measurement
 
-# How to use?
+# How to use it?
