@@ -21,7 +21,7 @@ A list of fundemental class.
     There are 3 variables required for the lattice construction: dim, L and domain. The constructor will generate a np.ndarray with size=L**dim, and full of its value from domain.
     
     ```
-    # An example of 2d Ising model.
+    # An example of 2d Ising model with size=10*10.
     from lattice import lattice
     mylattice=lattice(dim=2,L=10,domain=[1,-1])
     ```
