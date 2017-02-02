@@ -50,5 +50,5 @@ A list of fundemental class.
 
     beta=1/(T*kb)
     model=Ising(mylattice,J1,J2,h)
-    histogram=metropolis.sampling(latt,model.hamiltonian,beta,Nconf)
+    histogram=metropolis.sampling(mylattice,model.hamiltonian,beta,Nconf=100.0)
     ```
