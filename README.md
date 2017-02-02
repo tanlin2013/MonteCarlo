@@ -30,7 +30,7 @@ A list of fundemental class.
     state=mylattice.initialize_lattice(init="HotStart") # or init="ColdStart"
     ```
 2. Define the Hamiltonian. 
-    It has to be a function with arguments: state and site. In order to pass the other parameters needed in Hamiltonian. Users may pass them by class objects or the global variables. 
+    It has to be a function with two arguments: state and site. In order to pass the other parameters needed in Hamiltonian. Users may pass them by class objects or the global variables. 
     ```
     class Ising:
       def __init__(self,lattice,J1,J2,h):
