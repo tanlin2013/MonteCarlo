@@ -19,15 +19,15 @@ A list of fundemental class.
 # How to use it?
 1. Declaim a lattice. 
     There are 3 variables required for the lattice construction: dim, L and domain. The constructor will generate a np.ndarray with size=L**dim, and full of its value from domain.
-  ```
-    # An example of 2d Ising model.
-    from lattice import lattice
-    mylattice=lattice(dim=2,L=10,domain=[1,-1])
-  ```
-    to specify how to assign the value explicitly
-  ```
-    state=mylattice.initialize_lattice(init="HotStart") # or init="ColdStart"
-  ```
+```
+# An example of 2d Ising model.
+from lattice import lattice
+mylattice=lattice(dim=2,L=10,domain=[1,-1])
+```
+to specify how to assign the value explicitly
+```
+state=mylattice.initialize_lattice(init="HotStart") # or init="ColdStart"
+```
 2. Define the Hamiltonian. 
     It has to be a function with arguments: state and site. In order to pass the other parameters needed in Hamiltonian. Users may them by class objects or the global variables. 
     ```
