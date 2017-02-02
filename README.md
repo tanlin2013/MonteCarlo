@@ -22,6 +22,7 @@ A list of fundemental class.
     
     ```
     # An example of 2d Ising model with size=10*10.
+    
     from lattice import lattice
     mylattice=lattice(dim=2,L=10,domain=[1,-1])
     ```
