@@ -24,14 +24,9 @@ class physical:
         return m,chi  
 
 def AutoCorrelation(histogram,method="integral"):
-    mean=np.mean(histogram) ; std=np.std(histogram)
-    n=len(histogram) ; k=0 ; gamma=[]
-    while k < n:
-        G=0
-        for t in xrange(n-k):
-            G+=(histogram[t]-mean)*(histogram[t+k]-mean)
-        gamma.append(G/((n-k)*std))
-        k+=1
+    n=len(histogram) ; mean=np.mean(histogram) ; var=np.var(histogram)  
+    gamma=np.correlate(histogram-mean,histogram-mean,mode='full')[-n:]
+    gamma/=(var*(np.arange(n,0,-1)))
     if method=="fit":
         tau,b=np.polyfit(np.arange(n-1),np.log(gamma),1)
     elif method=="integral":
