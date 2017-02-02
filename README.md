@@ -10,7 +10,7 @@ Only Numpy is required and Anaconda is highly recommanded.
 * Numpy
 
 # Classes
-There are >./src
+A list of basic class in '''./src'''
 * lattice
 * metropolis
 * wolff_cluster
