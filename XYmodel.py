@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 class XY:
     def __init__(self,lattice,J):
         self.J=J
+        self.L=lattice.L
         self.BC=lattice.periodic_boundary_condition
         
     def hamiltonian(self,state,site):
@@ -15,7 +16,7 @@ class XY:
         return ham
     
     def magnetization(self,state,beta):
-        m=np.absolute((np.sum(np.cos(state))+np.sum(np.sin(state))*j)/float(self.L**2))
+        m=np.absolute((np.sum(np.cos(state))+np.sum(np.sin(state))*1j)/float(self.L**2))
         m2=1
         chi=beta*(m2-m**2)
         return m,chi   
@@ -25,7 +26,7 @@ if __name__=='__main__':
     L=40
     J=1.0
     kb=1.0
-    Ts=np.arange(1.8,2.5,0.1)    
+    Ts=np.arange(0.1,2.5,0.1)    
     Nconf=10000.0
 
     domain=(np.arange(16)/(2*np.pi)).tolist()
@@ -45,7 +46,7 @@ if __name__=='__main__':
             #MS=measurement.physical(latt,Is.hamiltonian,hist_T[i][j])
             #m,chi=MS.magnetization()
             m,chi=model.magnetization(hist_T[i][j],beta)
-            mhist.append(np.abs(m)) ; chihist.append(chi)
+            mhist.append(m) ; chihist.append(chi)
         mlist.append(np.sum(mhist)/Nconf)
         chilist.append(np.sum(chihist)/Nconf)
       
