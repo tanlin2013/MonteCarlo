@@ -14,10 +14,10 @@ class XY:
         ham=-self.J*(np.cos(state[site]-state[self.BC(site[0]+1),site[1]])+np.cos(state[site]-state[self.BC(site[0]-1),site[1]])+np.cos(state[site]-state[site[0],self.BC(site[1]+1)])+np.cos(state[site]-state[site[0],self.BC(site[1]-1)]))
         return ham
     
-    def magnetization(self,state):
+    def magnetization(self,state,beta):
         m=np.absolute((np.sum(np.cos(self.state))+np.sum(np.sin(self.state))*j)/float(self.L**2))
         m2=1
-        chi=m2-m**2
+        chi=beta*(m2-m**2)
         return m,chi   
     
 if __name__=='__main__':
@@ -30,7 +30,7 @@ if __name__=='__main__':
 
     domain=(np.arange(16)/(2*np.pi)).tolist()
     latt=lattice(2,L,domain)
-    model=XY(latt,J1,J2,h)
+    model=XY(latt,J)
 
     hist_T=[]
     for T in Ts:
@@ -40,11 +40,11 @@ if __name__=='__main__':
     
     mlist=[] ; chilist=[] 
     for i in xrange(len(hist_T)):
-        mhist=[] ; chihist=[]
+        mhist=[] ; chihist=[] ; beta=1/(Ts[i]*kb)
         for j in xrange(int(Nconf)):
             #MS=measurement.physical(latt,Is.hamiltonian,hist_T[i][j])
             #m,chi=MS.magnetization()
-            m,chi=model.magnetization(hist_T[i][j])
+            m,chi=model.magnetization(hist_T[i][j],beta)
             mhist.append(np.abs(m)) ; chihist.append(chi)
         mlist.append(np.sum(mhist)/Nconf)
         chilist.append(np.sum(chihist)/Nconf)
