@@ -45,7 +45,7 @@ A list of fundemental class.
                 -self.J2*(state[site[0],self.BC(site[1]+1)]+state[site[0],self.BC(site[1]-1)])-self.h)
             return ham
     ```
-3. Call the sampling method.
+3. Call the sampling method. A list of `Nconf` configurations, namely the histogram, is returned. 
     ```
     import metropolis
 
