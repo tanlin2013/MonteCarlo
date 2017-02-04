@@ -7,5 +7,5 @@ def save(path,histo):
 def read(path):
     npzfile=np.load(path)
     histo=[npzfile[i] for i in npzfile]
-    npzfile.close() ; histo.reverse()
+    histo.reverse() ; npzfile.close()
     return histo
